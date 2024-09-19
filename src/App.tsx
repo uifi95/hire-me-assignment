@@ -1,53 +1,65 @@
 import { useEffect } from 'react';
 import './App.scss';
-import { useChildrenStore } from './store/child/store';
 import { checkInChild, checkOutChild, getChildren } from './utils/api';
 import {
     checkInChildAction,
     checkOutChildAction,
     setChildrenAction,
 } from './store/child/actions';
+import { LoadingList } from './components/LoadingList/LoadingList';
+import { useLazyLoadChildren } from './hooks/useLazyLoadChildren';
+import { ChildItem } from './components/Child/ChildItem';
 
 function App() {
-    const [children, dispatch] = useChildrenStore();
+    const {
+        store: { children, dispatch },
+        displayChildren,
+        loading,
+        loadChildren,
+    } = useLazyLoadChildren();
+
     useEffect(() => {
         const fetchChildren = async () => {
             const fetchedChildren = await getChildren();
-            dispatch(setChildrenAction(fetchedChildren.slice(0, 1)));
+            dispatch(setChildrenAction(fetchedChildren));
         };
 
         fetchChildren();
     }, [dispatch]);
 
-    const checkInFirstChild = async () => {
-        if (children.length === 0) {
-            return;
-        }
+    const onCheckInChild = async (childId: string) => {
         const pickupTime = new Date();
         pickupTime.setHours(16, 0, 0, 0);
-        await checkInChild(children[0].id, pickupTime);
-        dispatch(checkInChildAction(children[0].id, pickupTime));
+        await checkInChild(childId, pickupTime);
+        dispatch(checkInChildAction(childId, pickupTime));
     };
 
-    const checkOutFirstChild = async () => {
-        if (children.length === 0) {
-            return;
-        }
-        await checkOutChild(children[0].id);
-        dispatch(checkOutChildAction(children[0].id));
+    const onCheckOutChild = async (childId: string) => {
+        await checkOutChild(childId);
+        dispatch(checkOutChildAction(childId));
     };
 
     return (
         <>
-            <div></div>
             <h1>Famly check-in management</h1>
-            <div className="card">{JSON.stringify(children, undefined, 4)}</div>
-            <button onClick={() => checkInFirstChild()}>
-                Check in first child
-            </button>
-            <button onClick={() => checkOutFirstChild()}>
-                Check out first child
-            </button>
+            <LoadingList
+                loading={loading}
+                hasMore={displayChildren.length < children.length}
+                loadMore={loadChildren}
+                threshold={3}
+            >
+                {displayChildren.map((child) => (
+                    <ChildItem
+                        key={child.id}
+                        id={child.id}
+                        name={child.name}
+                        checkedIn={child.checkedIn}
+                        pickupTime={child.pickupTime}
+                        onCheckIn={onCheckInChild}
+                        onCheckOut={onCheckOutChild}
+                    />
+                ))}
+            </LoadingList>
         </>
     );
 }
