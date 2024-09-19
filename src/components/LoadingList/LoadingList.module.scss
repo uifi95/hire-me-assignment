@@ -1,0 +1,10 @@
+.infinite-scroll {
+    max-height: 60vh;
+    overflow: auto;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 12px;
+}
