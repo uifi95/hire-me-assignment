@@ -8,7 +8,7 @@ import {
 } from './store/child/actions';
 import { LoadingList } from './components/LoadingList/LoadingList';
 import { useLazyLoadChildren } from './hooks/useLazyLoadChildren';
-import { ChildItem } from './components/Child/ChildItem';
+import { ChildItem } from './components/ChildItem/ChildItem';
 
 function App() {
     const {

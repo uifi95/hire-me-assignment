@@ -1,5 +1,7 @@
 import { ChildName } from '../../types/api';
 import { Button } from '../Button/Button';
+import { House } from '../Icons/House';
+import { School } from '../Icons/School';
 
 interface ChildItemProps {
     id: string;
@@ -23,12 +25,17 @@ export const ChildItem = ({
         <p>{checkedIn ? 'Checked in' : 'Checked out'}</p>
         {pickupTime && <p>Pickup time: {pickupTime.toLocaleTimeString()}</p>}
         <div className="buttons">
-            <Button variant="primary" onClick={() => onCheckIn(id)}>
-                <span>Check in {name.firstName}</span>
-            </Button>
-            <Button onClick={() => onCheckOut(id)}>
-                <span>Check out {name.firstName}</span>
-            </Button>
+            {checkedIn ? (
+                <Button onClick={() => onCheckOut(id)}>
+                    <House size="small" color="white" />
+                    <span>Check out {name.firstName}</span>
+                </Button>
+            ) : (
+                <Button variant="primary" onClick={() => onCheckIn(id)}>
+                    <School size="small" />
+                    <span>Check in {name.firstName}</span>
+                </Button>
+            )}
         </div>
     </div>
 );
