@@ -1,0 +1,27 @@
+.icon {
+    &.small {
+        width: 16px;
+    }
+
+    &.medium {
+        width: 32px;
+    }
+
+    &.large {
+        width: 48px;
+    }
+
+    &.black {
+        fill: #1a1a1a;
+        @media (prefers-color-scheme: light) {
+            fill: #f9f9f9;
+        }
+    }
+
+    &.white {
+        fill: #f9f9f9;
+        @media (prefers-color-scheme: light) {
+            fill: #1a1a1a;
+        }
+    }
+}
