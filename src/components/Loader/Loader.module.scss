@@ -1,11 +1,11 @@
-$mask: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+$mask: conic-gradient(#0000 20%, #000), linear-gradient(#000 0 0) content-box;
 
 .loader {
     width: 10px;
     padding: 4px;
     aspect-ratio: 1;
     border-radius: 50%;
-    background: #f9f9f9;
+    background: #5a19b3;
     -webkit-mask: $mask;
     mask: $mask;
     -webkit-mask-composite: source-out;

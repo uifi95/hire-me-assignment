@@ -7,7 +7,7 @@ interface LoadingListProps {
     hasMore: boolean;
     loading?: boolean;
     children: React.ReactElement[];
-    threshold?: number;
+    childClassName?: string;
     loadMore: () => void;
 }
 
@@ -15,6 +15,7 @@ export const LoadingList = ({
     hasMore,
     loading = false,
     children,
+    childClassName,
     loadMore,
 }: LoadingListProps) => {
     const scrollAreaRef = useRef(null);
@@ -31,9 +32,17 @@ export const LoadingList = ({
     return (
         <ul ref={scrollAreaRef} className={styles.infiniteScroll}>
             {children
-                ? children.map((child) => <li key={child.key}>{child}</li>)
+                ? children.map((child) => (
+                      <li className={childClassName} key={child.key}>
+                          {child}
+                      </li>
+                  ))
                 : null}
-            {hasMore && <Loader ref={loaderRef} size="large" />}
+            {hasMore && (
+                <li>
+                    <Loader ref={loaderRef} size="large" />
+                </li>
+            )}
         </ul>
     );
 };

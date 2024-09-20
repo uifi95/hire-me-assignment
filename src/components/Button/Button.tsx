@@ -5,7 +5,7 @@ interface ButtonProps {
     variant?: 'primary' | 'secondary';
     disabled?: boolean;
     children: React.ReactNode;
-    onClick: () => void;
+    onClick?: () => void;
 }
 
 export const Button = ({

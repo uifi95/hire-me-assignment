@@ -11,17 +11,11 @@
         width: 48px;
     }
 
-    &.black {
+    &.dark {
         fill: #1a1a1a;
-        @media (prefers-color-scheme: light) {
-            fill: #f9f9f9;
-        }
     }
 
-    &.white {
-        fill: #f9f9f9;
-        @media (prefers-color-scheme: light) {
-            fill: #1a1a1a;
-        }
+    &.light {
+        fill: #faf9fe;
     }
 }
