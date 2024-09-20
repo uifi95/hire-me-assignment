@@ -27,7 +27,7 @@ The application should be able to do 3 things:
 
 -   **Design** - simple responsive design, with only important information, that is always retrieved from the API, in the future I would create a component that fits well and renders any optional properties we had (like gender, birthday, etc)
 
--   **Infinite Scrolling** - used `IntersectionObserver` to check if a `Loader` component was visible, and did a bit of memoization to prevent unnecessary re-renders. I also simulated a 500ms delay to make the client-side loading "realistic".
+-   **Infinite Scrolling** - to make the functionality reusable I wrapped it in a hook, so I could add it declaratively to any component, (this took the most time as I did not want to use a library for helpers with intersection observer), used pure js to detect a `Loader` with `IntersectionObserver`. Created a hook that simulates "fetching more items" with a 500ms delay.
 
 -   **Reusability** - most of the code is abstracted away into functions and hooks, and all of the components were made with reusability in mind, so you can build future UIs or swap certain parts of the system with ease
 
