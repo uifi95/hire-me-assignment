@@ -27,7 +27,7 @@ The application should be able to do 3 things:
 
 -   **Design** - simple responsive design, with only important information, that is always retrieved from the API, in the future I would create a component that fits well and renders any optional properties we had (like gender, birthday, etc)
 
--   **Infinite Scrolling** - used `IntersectionObserver` to check if a `Loader` component was visible, and did a bit of memoization to prevent unnecessary re-renders
+-   **Infinite Scrolling** - used `IntersectionObserver` to check if a `Loader` component was visible, and did a bit of memoization to prevent unnecessary re-renders. I also simulated a 500ms delay to make the client-side loading "realistic".
 
 -   **Reusability** - most of the code is abstracted away into functions and hooks, and all of the components were made with reusability in mind, so you can build future UIs or swap certain parts of the system with ease
 -   **Type Safety** - everything in the app is typed, including scss files, config files, so it offers the best DX you can get with autocomplete and typescript errors
@@ -39,7 +39,7 @@ The application should be able to do 3 things:
 
 ## Setup your access token
 
-1. copy `env.example` to a new file `env.local`
+1. copy the contents of `.env.example` to a new file `.env.local`
 2. copy paste your **access token** after `VITE_ACCESS_TOKEN=`
 
 ## Run
