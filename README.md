@@ -1,4 +1,5 @@
 # Famly tech assignment - Sergiu Uifalean
+Check-in management application
 
 ## Requirements
 
@@ -24,7 +25,7 @@ The application should be able to do 3 things:
 
 -   **Validation** - stop user from entering invalid values through UX and silently fail server issues, allowing the user to repeat their action (would implement a full validation system as an improvement)
 
--   **Design** - simple responsive design, with only important information, that is always retrieved from the API
+-   **Design** - simple responsive design, with only important information, that is always retrieved from the API, in the future I would create a component that fits well and renders any optional properties we had (like gender, birthday, etc)
 
 -   **Infinite Scrolling** - used `IntersectionObserver` to check if a `Loader` component was visible, and did a bit of memoization to prevent unnecessary re-renders
 
