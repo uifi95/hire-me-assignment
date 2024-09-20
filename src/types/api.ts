@@ -6,7 +6,7 @@ import { CHILD_GENDERS } from '../constants/child';
 
 export interface ChildName {
     firstName: string;
-    middleName: string;
+    middleName?: string;
     lastName: string;
     fullName: string;
 }
