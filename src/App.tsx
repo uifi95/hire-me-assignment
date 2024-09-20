@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { checkInChild, checkOutChild, getChildren } from './utils/api';
+import { useCallback, useEffect } from 'react';
+import { checkInChildAPI, checkOutChildAPI, getChildrenAPI } from './utils/api';
 import {
     checkInChildAction,
     checkOutChildAction,
@@ -10,7 +10,7 @@ import { useLazyLoadChildren } from './hooks/useLazyLoadChildren';
 import { ChildItem } from './components/ChildItem/ChildItem';
 import { Logo } from './components/Logo/Logo';
 import styles from './App.module.scss';
-import childStyles from './components/ChildItem/ChildItem.module.scss';
+import childItemStyles from './components/ChildItem/ChildItem.module.scss';
 
 export const App = () => {
     const {
@@ -22,34 +22,40 @@ export const App = () => {
 
     useEffect(() => {
         const fetchChildren = async () => {
-            const fetchedChildren = await getChildren();
+            const fetchedChildren = await getChildrenAPI();
             dispatch(setChildrenAction(fetchedChildren));
         };
 
         fetchChildren();
     }, [dispatch]);
 
-    const onCheckInChild = async (childId: string, pickupTime: Date) => {
-        if (!pickupTime) {
-            return;
-        }
+    const onCheckInChild = useCallback(
+        async (childId: string, pickupTime: Date) => {
+            if (!pickupTime) {
+                return;
+            }
 
-        try {
-            await checkInChild(childId, pickupTime);
-            dispatch(checkInChildAction(childId, pickupTime));
-        } catch (error) {
-            console.error(error);
-        }
-    };
+            try {
+                await checkInChildAPI(childId, pickupTime);
+                dispatch(checkInChildAction(childId, pickupTime));
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        [dispatch]
+    );
 
-    const onCheckOutChild = async (childId: string) => {
-        try {
-            await checkOutChild(childId);
-            dispatch(checkOutChildAction(childId));
-        } catch (error) {
-            console.error(error);
-        }
-    };
+    const onCheckOutChild = useCallback(
+        async (childId: string) => {
+            try {
+                await checkOutChildAPI(childId);
+                dispatch(checkOutChildAction(childId));
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        [dispatch]
+    );
 
     return (
         <>
@@ -63,7 +69,7 @@ export const App = () => {
                     loading={loading}
                     hasMore={displayChildren.length < children.length}
                     loadMore={loadChildren}
-                    childClassName={childStyles.child}
+                    childClassName={childItemStyles.child}
                 >
                     {displayChildren.map((child) => (
                         <ChildItem

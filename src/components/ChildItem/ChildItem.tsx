@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { ChildGender, ChildName } from '../../types/api';
 import { Button } from '../Button/Button';
 import { TimePicker } from '../TimePicker/TimePicker';
@@ -17,27 +17,29 @@ interface ChildItemProps {
     onCheckOut: (childId: string) => void;
 }
 
-export const ChildItem = ({
-    id,
-    name,
-    checkedIn,
-    pickupTime,
-    onCheckIn,
-    onCheckOut,
-}: ChildItemProps) => {
-    return (
-        <>
-            <div className={styles.info}>
-                <h2 className={styles.name}>{name.fullName}</h2>
-                <span>{checkedIn ? 'Checked in' : 'Checked out'}</span>
-            </div>
-            <ChildActions
-                id={id}
-                checkedIn={checkedIn}
-                pickupTime={pickupTime}
-                onCheckIn={onCheckIn}
-                onCheckOut={onCheckOut}
-            />
-        </>
-    );
-};
+export const ChildItem = memo(
+    ({
+        id,
+        name,
+        checkedIn,
+        pickupTime,
+        onCheckIn,
+        onCheckOut,
+    }: ChildItemProps) => {
+        return (
+            <>
+                <div className={styles.info}>
+                    <h2 className={styles.name}>{name.fullName}</h2>
+                    <span>{checkedIn ? 'Checked in' : 'Checked out'}</span>
+                </div>
+                <ChildActions
+                    id={id}
+                    checkedIn={checkedIn}
+                    pickupTime={pickupTime}
+                    onCheckIn={onCheckIn}
+                    onCheckOut={onCheckOut}
+                />
+            </>
+        );
+    }
+);
