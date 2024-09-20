@@ -26,6 +26,14 @@ $mask: conic-gradient(#0000 20%, #000), linear-gradient(#000 0 0) content-box;
         width: 30px;
         padding: 12px;
     }
+
+    &.dark {
+        background: #5a19b3;
+    }
+
+    &.light {
+        background: #f4f0fa;
+    }
 }
 @keyframes l3 {
     to {

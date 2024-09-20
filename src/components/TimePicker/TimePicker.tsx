@@ -34,7 +34,6 @@ export const TimePicker = ({
             )}
             <input
                 className={styles.picker}
-                defaultValue={min}
                 name={name}
                 min={min}
                 max={max}

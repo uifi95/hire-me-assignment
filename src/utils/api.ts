@@ -44,6 +44,9 @@ export const getChildren = async () => {
 };
 
 export const checkInChild = async (childId: string, pickupTime: Date) => {
+    pickupTime = new Date(pickupTime);
+    pickupTime.setHours(pickupTime.getHours() + 1, pickupTime.getMinutes());
+
     return fetchJson(endpointUrl(`/v2/children/${childId}/checkins`), {
         method: 'POST',
         body: authorizedFormBody({

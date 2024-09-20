@@ -10,9 +10,7 @@ import { useLazyLoadChildren } from './hooks/useLazyLoadChildren';
 import { ChildItem } from './components/ChildItem/ChildItem';
 import { Logo } from './components/Logo/Logo';
 import styles from './App.module.scss';
-import childStyles, {
-    child,
-} from './components/ChildItem/ChildItem.module.scss';
+import childStyles from './components/ChildItem/ChildItem.module.scss';
 
 export const App = () => {
     const {
@@ -31,18 +29,26 @@ export const App = () => {
         fetchChildren();
     }, [dispatch]);
 
-    const onCheckInChild = async (childId: string, pickupTime?: Date) => {
+    const onCheckInChild = async (childId: string, pickupTime: Date) => {
         if (!pickupTime) {
             return;
         }
 
-        await checkInChild(childId, pickupTime);
-        dispatch(checkInChildAction(childId, pickupTime));
+        try {
+            await checkInChild(childId, pickupTime);
+            dispatch(checkInChildAction(childId, pickupTime));
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const onCheckOutChild = async (childId: string) => {
-        await checkOutChild(childId);
-        dispatch(checkOutChildAction(childId));
+        try {
+            await checkOutChild(childId);
+            dispatch(checkOutChildAction(childId));
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (

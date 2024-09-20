@@ -1,6 +1,7 @@
 .infinite-scroll {
     height: 70vh;
     overflow-y: auto;
+    overscroll-behavior: contain;
     list-style-type: none;
     display: flex;
     flex-direction: column;
