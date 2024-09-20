@@ -33,7 +33,7 @@ const fetchJson = async <T = void>(
     return (await response.json()) as T;
 };
 
-export const getChildren = async () => {
+export const getChildrenAPI = async () => {
     const { children } = await fetchJson<ChildrenResponse>(
         authorizedEndpointUrl('/daycare/tablet/group', {
             groupId: '86413ecf-01a1-44da-ba73-1aeda212a196',
@@ -43,7 +43,10 @@ export const getChildren = async () => {
     return children.map(mapChildRawToChild);
 };
 
-export const checkInChild = async (childId: string, pickupTime: Date) => {
+export const checkInChildAPI = async (childId: string, pickupTime: Date) => {
+    pickupTime = new Date(pickupTime);
+    pickupTime.setHours(pickupTime.getHours() + 1, pickupTime.getMinutes());
+
     return fetchJson(endpointUrl(`/v2/children/${childId}/checkins`), {
         method: 'POST',
         body: authorizedFormBody({
@@ -52,7 +55,7 @@ export const checkInChild = async (childId: string, pickupTime: Date) => {
     });
 };
 
-export const checkOutChild = async (childId: string) => {
+export const checkOutChildAPI = async (childId: string) => {
     return fetchJson(endpointUrl(`/v2/children/${childId}/checkout`), {
         method: 'POST',
         body: authorizedFormBody(),

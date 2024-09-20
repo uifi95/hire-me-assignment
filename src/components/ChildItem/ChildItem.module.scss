@@ -1,0 +1,32 @@
+.child {
+    align-self: stretch;
+    min-height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #eadefa;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 0.5rem;
+    gap: 6rem;
+    padding: 1rem;
+
+    @media only screen and (max-width: 768px) {
+        min-height: unset;
+        min-width: 15rem;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .info {
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        justify-content: flex-start;
+        gap: 0.5rem;
+
+        .name {
+            margin: 0;
+        }
+    }
+}

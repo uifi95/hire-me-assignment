@@ -1,0 +1,20 @@
+.actions {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 1rem;
+
+    @media only screen and (max-width: 768px) {
+        flex-direction: row;
+        align-items: flex-end;
+    }
+
+    .pickup-time {
+        text-align: right;
+        @media only screen and (max-width: 768px) {
+            flex-direction: row;
+            align-self: center;
+        }
+    }
+}

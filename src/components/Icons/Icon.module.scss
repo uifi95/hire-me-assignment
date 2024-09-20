@@ -1,0 +1,21 @@
+.icon {
+    &.small {
+        width: 16px;
+    }
+
+    &.medium {
+        width: 32px;
+    }
+
+    &.large {
+        width: 48px;
+    }
+
+    &.dark {
+        fill: #1a1a1a;
+    }
+
+    &.light {
+        fill: #faf9fe;
+    }
+}
