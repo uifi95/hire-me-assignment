@@ -31,7 +31,7 @@ The application should be able to do 3 things:
 
 -   **Reusability** - most of the code is abstracted away into functions and hooks, and all of the components were made with reusability in mind, so you can build future UIs or swap certain parts of the system with ease
 
--   **Type Safety** - everything in the app is typed, including scss files, config files, so it offers the best DX you can get with autocomplete and typescript errors
+-   **Type Safety** - everything in the app is typed, including `scss` files, `config` files, so it offers the best DX you can get with autocomplete and `typescript` validation
 
 ## Installation
 
